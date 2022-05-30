@@ -32,6 +32,7 @@ async function UpdateNetFramework(){
     const propsFileRegex = /AssemblyFileVersion\(\"(\d+).(\d+).(\d+).(\d+)\"\)/g
 
     var matches = assVerRegex.exec(csProjContents);
+    console.log(matches);
     var major = Number(matches[1]);
     var minor = Number(matches[2]);
     var patch = Number(matches[3]);
