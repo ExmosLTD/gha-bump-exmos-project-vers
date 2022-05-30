@@ -1,0 +1,12 @@
+name: 'GHA Rabbit MQ Sender'
+description: 'Sends a message to rabbitmq'
+inputs:
+  projectType:
+    description: 'Project type (NetFramework, NetCore, GoLang)'
+    required: true
+  projectName:
+    description: 'Project name'
+    required: false
+runs:
+  using: 'node12'
+  main: 'dist/main.js'
