@@ -8885,7 +8885,7 @@ async function UpdateNetFramework(){
     const projPath = path.join(process.env.GITHUB_WORKSPACE, "src", projectName, `${projectName}.csproj`);
     console.log(`projPath: ${projPath}`);
     var csProjContents = await fs.readFile(projPath, 'utf8');
-
+    console.log("Read csproj contents");
     const fileVerRegex = /<FileVersion>(\d+).(\d+).(\d+).(\d+)<\/FileVersion>/g
     const appVerRegex = /<ApplicationVersion>(\d+).(\d+).(\d+).(\d+)<\/ApplicationVersion>/g
     const assVerRegex = /<AssemblyVersion>(\d+).(\d+).(\d+).(\d+)<\/AssemblyVersion>/g
@@ -8904,13 +8904,16 @@ async function UpdateNetFramework(){
                                    .replace(appVerRegex, `<ApplicationVersion>${newVersion}</ApplicationVersion>`);
 
     await fs.writeFile(projPath, csProjContents);
-
+    console.log("wrote updated csproj");
     const propsFilePath = path.join(process.env.GITHUB_WORKSPACE, "src", projectName, "Properties", "AssemblyInfo.cs");
+    console.log("Read properties file contents");
     var propsFileContent = await fs.readFile(propsFilePath, 'utf8');
     propsFileContent = propsFileContent.replace(propsRegex, `AssemblyVersion("${newVersion}")`)
                                        .replace(propsFileRegex, `AssemblyFileVersion("${newVersion}")`);
 
+    console.log("WRiting properties file contents");
     await fs.writeFile(propsFilePath, propsFileContent);
+    console.log("WRote properties file contents");
 }
 
 async function UpdateGolang(){
