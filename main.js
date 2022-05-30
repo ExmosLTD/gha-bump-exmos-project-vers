@@ -15,8 +15,11 @@ async function run(projectType) {
     }
 }
 
+//D:\a\dev-test-hello-world\dev-test-hello-world\./.github/actions/gha-bump-exmos-project-vers\dist/main.js
+
 async function UpdateNetFramework(){
 
+    console.log(`workspace: ${process.env.GITHUB_WORKSPACE}`);
     const projPath = path.join(process.env.GITHUB_WORKSPACE, "src", projectName, `${projectName}.csproj`);
     console.log(`projPath: ${projPath}`);
     var csProjContents = await fs.readFile(projPath, 'utf8');
