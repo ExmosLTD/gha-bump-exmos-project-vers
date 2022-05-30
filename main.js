@@ -36,14 +36,19 @@ async function UpdateNetFramework(){
     var patch = Number(matches[3]);
     var build = Number(matches[4]);
 
+    
     var newVersion = `${major}.${minor}.${patch}.${build+1}`;
+    console.log(`New version ${newVersion}`);
+
     csProjContents = csProjContents.replace(fileVerRegex, `<FileVersion>${newVersion}</FileVersion>`)
                                    .replace(assVerRegex, `<AssemblyVersion>${newVersion}</AssemblyVersion>`)
                                    .replace(appVerRegex, `<ApplicationVersion>${newVersion}</ApplicationVersion>`);
 
+    console.log(`Updated contents, ready to write them.`);
     await fs.writeFile(projPath, csProjContents);
     console.log("wrote updated csproj");
     const propsFilePath = path.join("src", projectName, "Properties", "AssemblyInfo.cs");
+    console.log(`props Path: ${propsFilePath}`);
     console.log("Read properties file contents");
     var propsFileContent = await fs.readFile(propsFilePath, 'utf8');
     propsFileContent = propsFileContent.replace(propsRegex, `AssemblyVersion("${newVersion}")`)
