@@ -15,7 +15,7 @@ async function run() {
     }
 }
 
-//D:\a\dev-test-hello-world\dev-test-hello-world\./.github/actions/gha-bump-exmos-project-vers\dist/main.js
+//D:\a\dev-test-hello-world\dev-test-hello-world\./.github/actions/gha-bump-exmos-project-vers\dist/main.js'
 
 async function UpdateNetFramework(){
 

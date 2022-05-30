@@ -8875,7 +8875,7 @@ const path = __nccwpck_require__(1017);
 const projectName = core.getInput("projectName");
 const projectType = core.getInput("projectType");
 
-async function run(projectType) {   
+async function run() {
     if(projectType === "NetFramework"){
         await UpdateNetFramework();
     } else if (projectType === "NetCore") {
@@ -8885,8 +8885,11 @@ async function run(projectType) {
     }
 }
 
+//D:\a\dev-test-hello-world\dev-test-hello-world\./.github/actions/gha-bump-exmos-project-vers\dist/main.js'
+
 async function UpdateNetFramework(){
 
+    console.log(`workspace: ${process.env.GITHUB_WORKSPACE}`);
     const projPath = path.join(process.env.GITHUB_WORKSPACE, "src", projectName, `${projectName}.csproj`);
     console.log(`projPath: ${projPath}`);
     var csProjContents = await fs.readFile(projPath, 'utf8');
@@ -8951,7 +8954,7 @@ async function UpdateNetCore(){
     }    
 }
 
-run("NetFramework");
+run();
 })();
 
 module.exports = __webpack_exports__;
