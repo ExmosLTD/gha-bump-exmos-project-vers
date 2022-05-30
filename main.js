@@ -5,7 +5,7 @@ const path = require("path");
 const projectName = core.getInput("projectName");
 const projectType = core.getInput("projectType");
 
-async function run(projectType) {   
+async function run() {
     if(projectType === "NetFramework"){
         await UpdateNetFramework();
     } else if (projectType === "NetCore") {
@@ -84,4 +84,4 @@ async function UpdateNetCore(){
     }    
 }
 
-run("NetFramework");
+run();
