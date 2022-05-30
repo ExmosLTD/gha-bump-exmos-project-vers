@@ -8905,7 +8905,7 @@ async function UpdateNetFramework(){
 
     await fs.writeFile(projPath, csProjContents);
     console.log("wrote updated csproj");
-    const propsFilePath = path.join(process.env.GITHUB_WORKSPACE, "src", projectName, "Properties", "AssemblyInfo.cs");
+    const propsFilePath = path.join("src", projectName, "Properties", "AssemblyInfo.cs");
     console.log("Read properties file contents");
     var propsFileContent = await fs.readFile(propsFilePath, 'utf8');
     propsFileContent = propsFileContent.replace(propsRegex, `AssemblyVersion("${newVersion}")`)
