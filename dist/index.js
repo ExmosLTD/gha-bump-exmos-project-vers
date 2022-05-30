@@ -8723,14 +8723,6 @@ module.exports = require("fs");
 
 /***/ }),
 
-/***/ 3292:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("fs/promises");
-
-/***/ }),
-
 /***/ 3685:
 /***/ ((module) => {
 
@@ -8870,7 +8862,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(115);
 const github = __nccwpck_require__(3007);
-const fs = __nccwpck_require__(3292);
+const fs = (__nccwpck_require__(7147).promises);
 const path = __nccwpck_require__(1017);
 const projectName = core.getInput("projectName");
 const projectType = core.getInput("projectType");
