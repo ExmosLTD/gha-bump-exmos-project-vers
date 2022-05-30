@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const fs = require('fs/promises');
+const fs = require('fs').promises;
 const path = require("path");
 const projectName = core.getInput("projectName");
 const projectType = core.getInput("projectType");
