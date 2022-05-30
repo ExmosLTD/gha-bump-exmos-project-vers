@@ -8886,6 +8886,7 @@ async function UpdateNetFramework(){
     console.log(`projPath: ${projPath}`);
     var csProjContents = await fs.readFile(projPath, 'utf8');
     console.log("Read csproj contents");
+    console.log(csProjContents);
     const fileVerRegex = /<FileVersion>(\d+).(\d+).(\d+).(\d+)<\/FileVersion>/g
     const appVerRegex = /<ApplicationVersion>(\d+).(\d+).(\d+).(\d+)<\/ApplicationVersion>/g
     const assVerRegex = /<AssemblyVersion>(\d+).(\d+).(\d+).(\d+)<\/AssemblyVersion>/g
