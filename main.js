@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs/promises');
+const path = require("path");
 const projectName = core.getInput("projectName");
 const projectType = core.getInput("projectType");
 
@@ -15,10 +16,10 @@ async function run(projectType) {
 }
 
 async function UpdateNetFramework(){
-    const projPath = `src/${projectName}/${projectName}.csproj`;
-    var csProjContents = await fs.readFile(projPath, 'utf8');
 
+    const projPath = path.join(process.env.GITHUB_WORKSPACE, "src", projectName, `${projectName}.csproj`);
     console.log(`projPath: ${projPath}`);
+    var csProjContents = await fs.readFile(projPath, 'utf8');
 
     const fileVerRegex = /<FileVersion>(\d+).(\d+).(\d+).(\d+)<\/FileVersion>/g
     const appVerRegex = /<ApplicationVersion>(\d+).(\d+).(\d+).(\d+)<\/ApplicationVersion>/g
@@ -39,7 +40,7 @@ async function UpdateNetFramework(){
 
     await fs.writeFile(projPath, csProjContents);
 
-    const propsFilePath = `src\\${projectName}\\Properties\\AssemblyInfo.cs`;
+    const propsFilePath = path.join(process.env.GITHUB_WORKSPACE, "src", projectName, "Properties", "AssemblyInfo.cs");
     var propsFileContent = await fs.readFile(propsFilePath, 'utf8');
     propsFileContent = propsFileContent.replace(propsRegex, `AssemblyVersion("${newVersion}")`)
                                        .replace(propsFileRegex, `AssemblyFileVersion("${newVersion}")`);
