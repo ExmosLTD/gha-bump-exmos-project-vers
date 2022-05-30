@@ -8882,7 +8882,7 @@ async function run() {
 async function UpdateNetFramework(){
 
     console.log(`workspace: ${process.env.GITHUB_WORKSPACE}`);
-    const projPath = path.join(process.env.GITHUB_WORKSPACE, "src", projectName, `${projectName}.csproj`);
+    const projPath = path.join("src", projectName, `${projectName}.csproj`);
     console.log(`projPath: ${projPath}`);
     var csProjContents = await fs.readFile(projPath, 'utf8');
     console.log("Read csproj contents");
